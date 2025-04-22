@@ -29,7 +29,8 @@ const pool = mysql2.createPool({
       database: db_name,
       password: db_pass,
       port: Number(db_port),
-      waitForConnections: true
+      waitForConnections: true,
+      multipleStatements: true
 })
 
 
