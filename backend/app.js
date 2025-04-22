@@ -1,5 +1,6 @@
 import express from 'express'
 import cors from 'cors'
+import animalRouter from './routes/animalRoutes.js'
 
 // import animalRouter from ./routes/animalRoutes.js
 
@@ -9,6 +10,7 @@ app.use(cors())
 app.use(express.json())
 
 //Routes:
+app.use('/animals', animalRouter)
 
 app.use((error, req, res, next) => {
       console.error(error)
