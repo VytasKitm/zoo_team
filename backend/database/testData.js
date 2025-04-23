@@ -1,17 +1,17 @@
-import fs from 'fs'
-import pool from '../db.js'
+import fs from "fs";
+import pool from "../db.js";
 
-const fileData = fs.readFileSync('./backend/database/database.sql', 'utf8');
+const fileData = fs.readFileSync("./backend/database/database.sql", "utf8");
 
 const testData = async () => {
-      try {
-            await pool.query('DROP TABLE gyvunas')
-            console.log("Removing old data from table.")
-            await pool.query(fileData)
-            console.log('Inserting test data into database')
-      } catch (error) {
-            console.log(`Failed to insert data. ${error} `)
-      }
-}
+  try {
+    await pool.query("DROP TABLE animals");
+    console.log("Removing old data from table.");
+    await pool.query(fileData);
+    console.log("Inserting test data into database");
+  } catch (error) {
+    console.log(`Failed to insert data. ${error} `);
+  }
+};
 
-export default testData
+export default testData;

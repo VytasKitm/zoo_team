@@ -1,5 +1,5 @@
-CREATE TABLE gyvunas (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE animals (
+    id INT  AUTO_INCREMENT PRIMARY KEY,
     vardas VARCHAR(50) NOT NULL,
     rusis VARCHAR(50) NOT NULL,
     svoris FLOAT NOT NULL,
@@ -7,7 +7,7 @@ CREATE TABLE gyvunas (
     lt BOOLEAN NOT NULL
 );
 
-INSERT INTO gyvunas (vardas, rusis, svoris, aplinka, lt) VALUES
+INSERT INTO animals (vardas, rusis, svoris, aplinka, lt) VALUES
 ('ežys', 'žinduolis', 1.0, 'sausuma', 1),
 ('gandras', 'paukštis', 3.5, 'oras', 1),
 ('ryklys', 'žuvis', 500.0, 'vanduo', 0),
