@@ -1,8 +1,15 @@
-import express from 'express'
-import { create } from '../controllers/animalController.js'
+import express from "express";
+import {
+  create,
+  getAll,
+  getById,
+  update,
+  remove,
+} from "../controllers/animalController.js";
 
-const animalRouter = express.Router()
+const animalRouter = express.Router();
 
-animalRouter.route('/').post(create)
+animalRouter.route("/").get(getAll).post(create);
 
-export default animalRouter
+animalRouter.route("/:id").get(getById).put(update).delete(remove);
+export default animalRouter;
