@@ -1,4 +1,10 @@
-import { createAnimal } from "../models/animal.js";
+import {
+  createAnimal,
+  getAllAnimals,
+  removeAnimal,
+  updateAnimal,
+  getAnimalById,
+} from "../models/animal.js";
 
 async function create(req, res) {
   const { vardas, rusis, svoris, aplinka, lt } = req.body;
@@ -105,4 +111,22 @@ async function update(req, res) {
   }
 }
 
-export { create, getAll, remove, update };
+// Gauti vieną gyvūną pagal ID
+async function getById(req, res) {
+  const { id } = req.params;
+
+  try {
+    const animal = await getAnimalById(id);
+
+    if (!animal) {
+      return res.status(404).json({ error: "Gyvūnas nerastas." });
+    }
+
+    res.status(200).json(animal);
+  } catch (error) {
+    console.error("Klaida gaunant gyvūną pagal ID:", error);
+    res.status(500).json({ error: "Nepavyko gauti gyvūno." });
+  }
+}
+
+export { create, getAll, remove, update, getById };
