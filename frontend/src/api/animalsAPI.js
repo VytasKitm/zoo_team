@@ -1,10 +1,10 @@
 import axios from 'axios'
 
 
-// laikinas reikes pakeist po filtru idejimo !!!!!
-const getAnimalsAPI = async (args) => {
+
+const getAnimalsAPI = async (params) => {
       try {
-            const response = await axios.get("http://localhost:3000/animals/", {args})
+            const response = await axios.get("http://localhost:3000/animals/", {params})
             return response.data
       } catch (error) {
             console.log("Error geting all Animals: ", error )

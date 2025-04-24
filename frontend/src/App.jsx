@@ -4,6 +4,8 @@ import './App.css'
 // laikinai. po to istrinti:
 import { getAnimalsAPI, getAnimalByIdAPI, createAnimalAPI, updateAnimalAPI, deleteAnimalAPI } from './api/animalsAPI'
 
+import Filters from './components/Filters'
+
 
 // argumentai:
 
@@ -71,6 +73,7 @@ function App() {
            	<button onClick={() => createAnimal(createData)}>Create animal</button>
           	<button onClick={() => updateAnimal(updateId, updateData)}>Update animal</button>
 		<button onClick={() => deleteAnimal(deleteId)}>Delete Animal</button>
+		<Filters/>
     </>
   )
 }
