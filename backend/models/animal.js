@@ -1,4 +1,19 @@
 import pool from "../src/db.js";
+import mysql2 from 'mysql2'
+
+const RESET    = "\x1b[0m";
+const YELLOW   = "\x1b[33m";
+const MAGENTA  = "\x1b[35m";
+const CYAN     = "\x1b[36m";
+const GREEN    = "\x1b[32m";
+
+function colorLinesGreen(text) {
+  return text
+    .split("\n")
+    .map(line => GREEN + line + RESET)
+    .join("\n");
+}
+
 
 // Function to create a new animal
 export async function createAnimal({ vardas, rusis, svoris, aplinka, lt }) {
@@ -10,6 +25,18 @@ export async function createAnimal({ vardas, rusis, svoris, aplinka, lt }) {
 
   try {
     const [result] = await pool.query(query, values);
+        // Debuginimui -------------------------------
+        console.log("----------------------------------------------")
+        const fullsql = mysql2.format(query, values)
+        console.log()
+        console.log(`${MAGENTA}function${RESET}: ${YELLOW}createAnimal${RESET}(vardas: ${CYAN}${vardas}${RESET}, rusis: ${CYAN}${rusis}${RESET}, svoris: ${CYAN}${svoris}${RESET}, aplinka: ${CYAN}${aplinka}${RESET}, lt: ${CYAN}${lt}${RESET}): `)
+        console.log()
+        console.log("SQL query: ")
+        console.log(colorLinesGreen(fullsql))
+        console.log("Response, insert Id: ")
+        console.log(`${CYAN}${result.insertId}${RESET}`)
+        console.log("----------------------------------------------")
+        // //--------------------------------------------
     return result.insertId;
   } catch (error) {
     console.error("Error inserting animal:", error);
@@ -30,7 +57,18 @@ export async function getAnimalById(id) {
     if (rows.length === 0) {
       return null;
     }
-
+    // Debuginimui -------------------------------
+    console.log("----------------------------------------------")
+    const fullsql = mysql2.format(query)
+    console.log()
+    console.log(`${MAGENTA}function${RESET}: ${YELLOW}getAnimalById${RESET}(id: ${CYAN}${id}${RESET})`)
+    console.log()
+    console.log("SQL query: ")
+    console.log(`     ${colorLinesGreen(fullsql)}`)
+    console.log("Response, rows[0]: ")
+    console.log(rows[0])
+    console.log("----------------------------------------------")
+    // //--------------------------------------------
     return rows[0];
   } catch (error) {
     console.error("Error fetching animal by ID:", error);
@@ -54,7 +92,18 @@ export async function updateAnimal(id, { vardas, rusis, svoris, aplinka, lt }) {
     if (result.affectedRows === 0) {
       return null;
     }
-
+      // Debuginimui -------------------------------
+      console.log("----------------------------------------------")
+      const fullsql = mysql2.format(query, values)
+      console.log()
+      console.log(`${MAGENTA}function${RESET}: ${YELLOW}updateAnimal${RESET}(id: ${CYAN}${id}${RESET}, vardas: ${CYAN}${vardas}${RESET}, rusis: ${CYAN}${rusis}${RESET}, svoris: ${CYAN}${svoris}${RESET}, aplinka: ${CYAN}${aplinka}${RESET}, lt: ${CYAN}${lt}${RESET}): `)
+      console.log()
+      console.log("SQL query: ")
+      console.log(colorLinesGreen(fullsql))
+      console.log("Response, affected rows: ")
+      console.log(`${CYAN}${result.affectedRows}${RESET}`)
+      console.log("----------------------------------------------")
+      // //--------------------------------------------
     return result.affectedRows; // Number of rows affected
   } catch (error) {
     console.error("Error updating animal:", error);
@@ -76,7 +125,18 @@ export async function removeAnimal(id) {
     if (result.affectedRows === 0) {
       return null;
     }
-
+    // Debuginimui -------------------------------
+    console.log("----------------------------------------------")
+    const fullsql = mysql2.format(query, values)
+    console.log()
+    console.log(`${MAGENTA}function${RESET}: ${YELLOW}removeAnimal${RESET}(id: ${CYAN}${id}${RESET})`)
+    console.log()
+    console.log("SQL query: ")
+    console.log(colorLinesGreen(fullsql))
+    console.log("Response, affected rows: ")
+    console.log(`${CYAN}${result.affectedRows}${RESET}`)
+    console.log("----------------------------------------------")
+    //--------------------------------------------
     return result.affectedRows; // Number of rows affected
   } catch (error) {
     console.error("Error removing animal:", error);
@@ -90,6 +150,21 @@ export async function getAllAnimals() {
 
   try {
     const [rows] = await pool.query(query);
+    // Debuginimui -------------------------------
+    console.log("----------------------------------------------")
+    const fullsql = mysql2.format(query)
+    console.log()
+    console.log(`${MAGENTA}function${RESET}: ${YELLOW}getAllAnimals${RESET}()`)
+    console.log()
+    console.log("SQL query: ")
+    console.log()
+    console.log(`    ${colorLinesGreen(fullsql)}`)
+    console.log()
+    console.log("Response, rows: ")
+    console.log(`${CYAN}${rows}${RESET}`)
+    // console.log(rows)
+    console.log("----------------------------------------------")
+    // //--------------------------------------------
     return rows;
   } catch (error) {
     console.error("Klaida gaunant visus gyvūnus:", error);

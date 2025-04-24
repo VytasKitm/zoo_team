@@ -1,8 +1,3 @@
-// getAnimals(params)
-// createAnimal(data)
-// updateAnimal(id, data)
-// deleteAnimal(id)
-
 import axios from 'axios'
 
 
@@ -51,5 +46,6 @@ const deleteAnimalAPI = async (id) => {
             console.log(`Error deleting animal, id: ${id}`, error)
       }
 }
+
 
 export {getAnimalsAPI, getAnimalByIdAPI, createAnimalAPI, updateAnimalAPI, deleteAnimalAPI}
