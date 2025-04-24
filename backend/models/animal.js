@@ -83,3 +83,16 @@ export async function removeAnimal(id) {
     throw new Error("Failed to remove animal from the database.");
   }
 }
+
+// Funkcija, kuri gražina visus gyvūnus
+export async function getAllAnimals() {
+  const query = `SELECT * FROM animals`;
+
+  try {
+    const [rows] = await pool.query(query);
+    return rows;
+  } catch (error) {
+    console.error("Klaida gaunant visus gyvūnus:", error);
+    throw new Error("Nepavyko gauti gyvūnų iš duomenų bazės.");
+  }
+}

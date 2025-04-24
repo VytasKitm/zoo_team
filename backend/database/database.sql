@@ -38,6 +38,6 @@ INSERT INTO animals (vardas, rusis, svoris, aplinka, lt) VALUES
 ('gulbė', 'paukštis', 14.0, 'vanduo', 1),
 ('kiškis', 'žinduolis', 2.5, 'sausuma', 1),
 ('lokys', 'žinduolis', 350.0, 'sausuma', 1),
-('kirmėlė', 'bestuburis', 0.01, 'po žeme', 1),
-('šakninė žiurkė', 'žinduolis', 0.3, 'po žeme', 1),
-('pelė', 'žinduolis', 0.1, 'po žeme', 1);
+('kirmėlė', 'bestuburis', 0.01, 'po zeme', 1),
+('šakninė žiurkė', 'žinduolis', 0.3, 'po zeme', 1),
+('pelė', 'žinduolis', 0.1, 'po zeme', 1);
