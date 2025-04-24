@@ -1,9 +1,9 @@
 import app from './app.js'
-import testData from './database/testData.js'
+import testData from '../database/testData.js'
 import pool from './db.js'
-
 import dotenv from 'dotenv'
 dotenv.config()
+
 const {
       port,
       host,

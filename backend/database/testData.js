@@ -1,7 +1,7 @@
 import fs from "fs";
-import pool from "../db.js";
+import pool from "../src/db.js";
 
-const fileData = fs.readFileSync("./backend/database/database.sql", "utf8");
+const fileData = fs.readFileSync("./database/database.sql", "utf8");
 
 const testData = async () => {
   try {

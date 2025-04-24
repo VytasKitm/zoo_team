@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import animalRouter from './routes/animalRoutes.js'
+import animalRouter from '../routes/animalRoutes.js'
 
 // import animalRouter from ./routes/animalRoutes.js
 
