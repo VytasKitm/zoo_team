@@ -1,4 +1,4 @@
-import pool from "../db.js";
+import pool from "../src/db.js";
 
 // Function to create a new animal
 export async function createAnimal({ vardas, rusis, svoris, aplinka, lt }) {
@@ -41,7 +41,7 @@ export async function getAnimalById(id) {
 // Function to update an animal's information by ID
 export async function updateAnimal(id, { vardas, rusis, svoris, aplinka, lt }) {
   const query = `
-    UPDATE animals
+    UPDATE animals 
     SET vardas = ?, rusis = ?, svoris = ?, aplinka = ?, lt = ?
     WHERE id = ?
   `;
