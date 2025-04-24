@@ -7,7 +7,7 @@ import { getAnimalsAPI, getAnimalByIdAPI, createAnimalAPI, updateAnimalAPI, dele
 
 // argumentai:
 
-const id = "5"
+const id = "15"
 
 const createData = { 
 	"vardas": "TestGyvunas",
@@ -27,7 +27,7 @@ const updateData = {
 	lt: false
 }
 
-const deleteId = "10"
+const deleteId = "12"
 
 //---------------------------------------------------------------------
 
@@ -61,6 +61,7 @@ function App() {
 		const deletedResponse = await deleteAnimalAPI(deleteId)
 		console.log("Deleted animal: ", deletedResponse)
 	}
+
 //------------------------------------------------
 
   return (

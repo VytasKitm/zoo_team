@@ -4,6 +4,7 @@ dotenv.config();
 
 const { db_port, db_host, db_name, db_user, db_pass } = process.env;
 
+
 // prisijungia prie mysql serverio.
 const testingConnection = mysql2.createPool({
   host: db_host,
@@ -26,5 +27,16 @@ const pool = mysql2.createPool({
   waitForConnections: true,
   multipleStatements: true,
 });
+
+// funkcija sql debuginimui jei kam prireiks
+
+// const origQuery = pool.query.bind(pool);
+// pool.query = async function (sql, params) {
+//   console.log('🛠 SQL →', sql.trim());
+//   if (Array.isArray(params) && params.length) {
+//     console.log('🛠 Params →', params);
+//   }
+//   return origQuery(sql, params);
+// };
 
 export default pool;

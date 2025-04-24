@@ -8,7 +8,7 @@
     "concurrently": "^9.1.2"
   },
    "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "",
     "start:backend": "npm install --prefix backend && npm run dev --prefix backend",
     "start:frontend": "npm install --prefix frontend && npm run dev --prefix frontend",
     "start": "npm i && concurrently -k --success first -n BACKEND,FRONTEND -c cyan,magenta \"npm run start:backend\" \"npm run start:frontend\""
