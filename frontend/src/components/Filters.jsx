@@ -13,16 +13,16 @@ const filtersPlaceholder = {
 
 function reducer(state, action) {
       switch (action.type) {
-            case 'set_q':
+            case 'q':
                   return {...state, q:action.payload}
                   
-            case 'set_aplinka':
+            case 'aplinka':
                   return {...state, aplinka: action.payload}
 
-            case 'set_sort':
+            case 'sort':
                   return {...state, sort: action.payload}
 
-            case 'set_order':
+            case 'order':
                   return {...state, order: action.payload}
 
             case 'lt':
@@ -61,7 +61,7 @@ const Filters = () => {
                         type="search"
                         placeholder="Search…"
                         value={filters.q}
-                        onChange={e => dispatch({ type: 'set_q', payload: e.target.value })}
+                        onChange={e => dispatch({ type: 'q', payload: e.target.value })}
                   />
 
                   <label>
@@ -73,11 +73,11 @@ const Filters = () => {
                         lt
                   </label>
 
-                  <button onClick={() => dispatch({type: 'set_sort', payload: 'svoris'})}>Svoris</button>
-                  <button onClick={() => dispatch({type: 'set_sort', payload: 'rusis'})}>Rusis</button>
-                  <button onClick={() => dispatch({type: 'set_sort', payload: 'vardas'})}>Pavadinimas</button>
-                  <button onClick={() => dispatch({type: 'set_order', payload: 'asc'})}>ASC</button>
-                  <button onClick={() => dispatch({type: 'set_order', payload: 'desc'})}>DESC</button>
+                  <button onClick={() => dispatch({type: 'sort', payload: 'svoris'})}>Svoris</button>
+                  <button onClick={() => dispatch({type: 'sort', payload: 'rusis'})}>Rusis</button>
+                  <button onClick={() => dispatch({type: 'sort', payload: 'vardas'})}>Pavadinimas</button>
+                  <button onClick={() => dispatch({type: 'order', payload: 'asc'})}>ASC</button>
+                  <button onClick={() => dispatch({type: 'order', payload: 'desc'})}>DESC</button>
             </div>
       )
 }
