@@ -5,6 +5,7 @@ import axios from 'axios'
 const getAnimalsAPI = async (params) => {
       try {
             const response = await axios.get("http://localhost:3000/animals/", {params})
+            console.log(response.data)
             return response.data
       } catch (error) {
             console.log("Error geting all Animals: ", error )

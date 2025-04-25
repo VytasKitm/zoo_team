@@ -78,6 +78,20 @@ const Filters = () => {
                   <button onClick={() => dispatch({type: 'sort', payload: 'vardas'})}>Pavadinimas</button>
                   <button onClick={() => dispatch({type: 'order', payload: 'asc'})}>ASC</button>
                   <button onClick={() => dispatch({type: 'order', payload: 'desc'})}>DESC</button>
+
+                  <label>
+                        Aplinka:{' '}
+                        <select
+                              value={filters.aplinka}
+                              onChange={(e) => dispatch({type: 'aplinka', payload: e.target.value})}
+                        >
+                              <option value="">Visi</option>
+                              <option value="oras">Oras</option>
+                              <option value="sausuma">Sausuma</option>
+                              <option value="vanduo">Vanduo</option>
+                              <option value="po zeme">Po zeme</option>
+                        </select>
+                  </label>
             </div>
       )
 }
