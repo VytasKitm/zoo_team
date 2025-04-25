@@ -1,5 +1,7 @@
 import pool from "../src/db.js";
 import mysql2 from 'mysql2'
+import { sort } from '../helpers/sort.js';
+import { search } from '../helpers/search.js';
 
 const RESET    = "\x1b[0m";
 const YELLOW   = "\x1b[33m";
@@ -145,26 +147,28 @@ export async function removeAnimal(id) {
 }
 
 // Funkcija, kuri gražina visus gyvūnus
-export async function getAllAnimals() {
-  const query = `SELECT * FROM animals`;
+export async function getAllAnimals({ zodis, sortBy, order }) {
+  const whereClause = search(zodis);
+  const orderClause = sort({ sortBy, order });
+
+  const query = `
+    SELECT * FROM animals
+    ${whereClause}
+    ${orderClause}
+  `.trim();
 
   try {
     const [rows] = await pool.query(query);
-    // Debuginimui -------------------------------
+    const fullsql = mysql2.format(query);
+
     console.log("----------------------------------------------")
-    const fullsql = mysql2.format(query)
-    console.log()
-    console.log(`${MAGENTA}function${RESET}: ${YELLOW}getAllAnimals${RESET}()`)
-    console.log()
+    console.log(`${MAGENTA}function${RESET}: ${YELLOW}getAllAnimals${RESET}(zodis: ${CYAN}${zodis}${RESET}, sortBy: ${CYAN}${sortBy}${RESET}, order: ${CYAN}${order}${RESET})`);
     console.log("SQL query: ")
-    console.log()
-    console.log(`    ${colorLinesGreen(fullsql)}`)
-    console.log()
+    console.log(colorLinesGreen(fullsql));
     console.log("Response, rows: ")
-    console.log(`${CYAN}${rows}${RESET}`)
-    // console.log(rows)
+    console.log(`${CYAN}${rows.length}${RESET} rows`)
     console.log("----------------------------------------------")
-    // //--------------------------------------------
+
     return rows;
   } catch (error) {
     console.error("Klaida gaunant visus gyvūnus:", error);

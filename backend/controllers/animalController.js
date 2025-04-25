@@ -44,7 +44,7 @@ async function create(req, res) {
 // Nauja getAll funkcija, kuri kviečia modelį
 async function getAll(req, res) {
   try {
-    const animals = await getAllAnimals();
+    const animals = await getAllAnimals(req.query);
     res.status(200).json(animals);
   } catch (error) {
     console.error("Klaida gaunant gyvūnus:", error);
