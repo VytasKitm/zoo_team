@@ -2,6 +2,7 @@ import pool from "../src/db.js";
 import mysql2 from 'mysql2'
 import { sort } from '../helpers/sort.js';
 import { search } from '../helpers/search.js';
+import { environment } from "../helpers/environment.js";
 
 const RESET    = "\x1b[0m";
 const YELLOW   = "\x1b[33m";
@@ -147,28 +148,37 @@ export async function removeAnimal(id) {
 }
 
 // Funkcija, kuri gražina visus gyvūnus
-export async function getAllAnimals({ zodis, sortBy, order }) {
-  const whereClause = search(zodis);
-  const orderClause = sort({ sortBy, order });
+export async function getAllAnimals(filters = {}) {
+  const { clause: filterSQL, params: filterParams} = environment(filters)
+  const { clause: searchSQL, params: searchParams} = search(filters)
+  let whereSQL = ''
+  let allParams = []
 
-  const query = `
-    SELECT * FROM animals
-    ${whereClause}
-    ${orderClause}
-  `.trim();
+  if (filterSQL && searchSQL) {
+    const stripped = filterSQL.replace(/^WHERE\s*/i, '')
+    whereSQL = `${searchSQL} AND ${stripped}`
+    allParams = [...searchParams, ...filterParams]
+  }  
+  else {
+    whereSQL = filterSQL || searchSQL
+    allParams = [...filterParams, searchParams]
+  }
+
+  const sortSQL = sort(filters)
+  const query = `SELECT * FROM animals ${whereSQL} ${sortSQL}`.trim();
 
   try {
-    const [rows] = await pool.query(query);
-    const fullsql = mysql2.format(query);
-
+    const [rows] = await pool.query(query, allParams);
+    // Debuginimui -------------------------------
+    const fullsql = mysql2.format(query, allParams);
     console.log("----------------------------------------------")
-    console.log(`${MAGENTA}function${RESET}: ${YELLOW}getAllAnimals${RESET}(zodis: ${CYAN}${zodis}${RESET}, sortBy: ${CYAN}${sortBy}${RESET}, order: ${CYAN}${order}${RESET})`);
+    console.log(`${MAGENTA}function${RESET}: ${YELLOW}getAllAnimals${RESET}(paieska: ${CYAN}${filters.q}${RESET}, sortBy: ${CYAN}${filters.sort}${RESET}, order: ${CYAN}${filters.order}${RESET}, aplinka: ${CYAN}${filters.aplinka}${RESET}, lt: ${CYAN}${filters.lt}${RESET})`);
     console.log("SQL query: ")
     console.log(colorLinesGreen(fullsql));
     console.log("Response, rows: ")
     console.log(`${CYAN}${rows.length}${RESET} rows`)
     console.log("----------------------------------------------")
-
+   //--------------------------------------------
     return rows;
   } catch (error) {
     console.error("Klaida gaunant visus gyvūnus:", error);

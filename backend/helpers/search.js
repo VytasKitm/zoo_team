@@ -1,7 +1,11 @@
-export function search(zodis) {
-    if (!zodis) return '';
-  
-    const sanitized = zodis.trim().toLowerCase();
-    return `WHERE LOWER(vardas) LIKE '%${sanitized}%' OR LOWER(rusis) LIKE '%${sanitized}%'`;
+export function search({q} = {}) {
+    if (!q) {
+        return { clause: '', params: [] }; 
+    }
+      const term = `%${q}%`;
+      return {
+        clause: 'WHERE (vardas LIKE ? OR rusis LIKE ?)',
+        params: [term, term],
+      };
 }
   

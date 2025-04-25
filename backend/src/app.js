@@ -9,7 +9,7 @@ const app = express()
 
 app.use(
     morgan(
-        'Received request \x1b[32m:method\x1b[35m :url\x1b[33m :status\x1b[0m'
+        'Received request \x1b[32m:method\x1b[36m :url\x1b[33m :status\x1b[0m'
     )
 );
 
