@@ -44,20 +44,6 @@ async function create(req, res) {
 // Nauja getAll funkcija, kuri kviečia modelį
 async function getAll(req, res) {
   try {
-    // console.log(req.query)
-    // const {
-    //   q = '',
-    //   sort = '',
-    //   order = 'asc',
-    //   lt = 'false',
-    // } = req.query
-    // const filters = {
-    //   q,
-    //   sort,
-    //   order: order.toLowerCase() === 'desc' ? 'desc' : 'asc',
-    //   lt: lt === 'false'
-    // }
-
     const animals = await getAllAnimals(req.query);
     console.log(`req.query: ${JSON.stringify(req.query)}`)
     res.status(200).json(animals);
