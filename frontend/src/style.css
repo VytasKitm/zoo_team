@@ -227,3 +227,15 @@ body {
   background: linear-gradient(135deg, #a94442, #c94b4b);
   transform: translateY(-2px);
 }
+
+.filters button.active {
+  background: linear-gradient(135deg, #156639, #13632b);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #bdccda;
+}

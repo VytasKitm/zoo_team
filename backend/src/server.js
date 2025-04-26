@@ -4,10 +4,10 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 const {
-      port,
-      host,
-      db_port,
-      db_host,
+      PORT,
+      HOST,
+      DB_PORT,
+      DB_HOST,
 } = process.env
 
 
@@ -15,11 +15,11 @@ async function startServer() {
       try {
 
             const connection = await pool.getConnection()
-            console.log(`Database connection at ${db_host}, port: ${db_port} established`)
+            console.log(`Database connection at ${DB_HOST}, port: ${DB_PORT} established`)
             connection.release()
 
-            app.listen(port, () => {
-            console.log(`Server started at http://${host}:${port}`)
+            app.listen(PORT, () => {
+            console.log(`Server started at http://${HOST}:${PORT}`)
             })
       } catch (error) {
             console.log(`Failed to start server: ${error}`)

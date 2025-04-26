@@ -5,6 +5,7 @@ import {
   deleteAnimalAPI,
 } from "../api/animalsAPI";
 import Filters from "./Filters";
+import Create from "./Create";
 
 const AnimalTable = () => {
   const [gyvunai, setGyvunai] = useState([]);
@@ -55,6 +56,7 @@ const AnimalTable = () => {
     <div className="container">
       <h2 className="title">Gyvūnų sąrašas</h2>
 
+      <Create/>
       <Filters onChange={setFilters} />
 
       <ul className="animal-list">
