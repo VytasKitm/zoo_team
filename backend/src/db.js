@@ -2,28 +2,28 @@ import mysql2 from "mysql2/promise";
 import dotenv from "dotenv";
 dotenv.config();
 
-const { db_port, db_host, db_name, db_user, db_pass } = process.env;
+const { DB_PORT, DB_HOST, DB_NAME, DB_USER, DB_PASS } = process.env;
 
 
 // prisijungia prie mysql serverio.
 const testingConnection = mysql2.createPool({
-  host: db_host,
-  user: db_user,
-  password: db_pass,
-  port: Number(db_port),
+  host: DB_HOST,
+  user: DB_USER,
+  password: DB_PASS,
+  port: Number(DB_PORT),
   waitForConnections: true,
 });
 
 // sukuria db jei nera.
-await testingConnection.query(`CREATE DATABASE IF NOT EXISTS ${db_name}`);
+await testingConnection.query(`CREATE DATABASE IF NOT EXISTS ${DB_NAME}`);
 
 // sukuria prisijungimus prie db_name db
 const pool = mysql2.createPool({
-  host: db_host,
-  user: db_user,
-  database: db_name,
-  password: db_pass,
-  port: Number(db_port),
+  host: DB_HOST,
+  user: DB_USER,
+  database: DB_NAME,
+  password: DB_PASS,
+  port: Number(DB_PORT),
   waitForConnections: true,
   multipleStatements: true,
 });
