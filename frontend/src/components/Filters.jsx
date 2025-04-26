@@ -1,99 +1,103 @@
-import React, {useReducer, useEffect} from 'react'
-import { getAnimalsAPI } from '../api/animalsAPI'
-import debounce from 'debounce'
-
+import React, { useReducer, useEffect } from "react";
+import { getAnimalsAPI } from "../api/animalsAPI";
+import debounce from "debounce";
 
 const filtersPlaceholder = {
-      q: '',
-      aplinka: '',
-      sort: '',
-      order: '',
-      lt: false
-}   
+  q: "",
+  aplinka: "",
+  sort: "",
+  order: "",
+  lt: false,
+};
 
 function reducer(state, action) {
-      switch (action.type) {
-            case 'q':
-                  return {...state, q:action.payload}
-                  
-            case 'aplinka':
-                  return {...state, aplinka: action.payload}
+  switch (action.type) {
+    case "q":
+      return { ...state, q: action.payload };
 
-            case 'sort':
-                  return {...state, sort: action.payload}
+    case "aplinka":
+      return { ...state, aplinka: action.payload };
 
-            case 'order':
-                  return {...state, order: action.payload}
+    case "sort":
+      return { ...state, sort: action.payload };
 
-            case 'lt':
-                  return {...state, lt: !state.lt}
+    case "order":
+      return { ...state, order: action.payload };
 
-            default:
-                  return state;
-      }
+    case "lt":
+      return { ...state, lt: !state.lt };
 
+    default:
+      return state;
+  }
 }
 
-const debounceFetch = debounce((params) => {getAnimalsAPI(params)},250)
+const Filters = ({ onChange }) => {
+  const [filters, dispatch] = useReducer(reducer, filtersPlaceholder);
 
+  useEffect(() => {
+    const params = new URLSearchParams({
+      q: filters.q,
+      sort: filters.sort,
+      order: filters.order,
+      aplinka: filters.aplinka,
+      lt: filters.lt,
+    });
 
-const Filters = () => {
-      const [filters, dispatch] = useReducer(reducer, filtersPlaceholder)
-      
+    debounce(() => onChange(filters), 250)();
+  }, [filters, onChange]);
 
-      useEffect(() => {
+  return (
+    <div className="filters">
+      <input
+        type="search"
+        placeholder="Search…"
+        value={filters.q}
+        onChange={(e) => dispatch({ type: "q", payload: e.target.value })}
+      />
 
-            const params = new URLSearchParams({
-                  q: filters.q,
-                  sort: filters.sort,
-                  order: filters.order,
-                  aplinka: filters.aplinka,
-                  lt: filters.lt
-            })
-            
-            debounceFetch(params)
+      <label>
+        <input
+          type="checkbox"
+          checked={filters.lt}
+          onChange={() => dispatch({ type: "lt" })}
+        />
+        lt
+      </label>
 
-      },[filters])
+      <button onClick={() => dispatch({ type: "sort", payload: "svoris" })}>
+        Svoris
+      </button>
+      <button onClick={() => dispatch({ type: "sort", payload: "rusis" })}>
+        Rusis
+      </button>
+      <button onClick={() => dispatch({ type: "sort", payload: "vardas" })}>
+        Pavadinimas
+      </button>
+      <button onClick={() => dispatch({ type: "order", payload: "asc" })}>
+        ASC
+      </button>
+      <button onClick={() => dispatch({ type: "order", payload: "desc" })}>
+        DESC
+      </button>
 
-      return (
-            <div>
-                  <input
-                        type="search"
-                        placeholder="Search…"
-                        value={filters.q}
-                        onChange={e => dispatch({ type: 'q', payload: e.target.value })}
-                  />
+      <label>
+        Aplinka:{" "}
+        <select
+          value={filters.aplinka}
+          onChange={(e) =>
+            dispatch({ type: "aplinka", payload: e.target.value })
+          }
+        >
+          <option value="">Visi</option>
+          <option value="oras">Oras</option>
+          <option value="sausuma">Sausuma</option>
+          <option value="vanduo">Vanduo</option>
+          <option value="po zeme">Po zeme</option>
+        </select>
+      </label>
+    </div>
+  );
+};
 
-                  <label>
-                        <input
-                        type="checkbox"
-                        checked={filters.lt}
-                        onChange={() => dispatch({ type: "lt" })}
-                        />
-                        lt
-                  </label>
-
-                  <button onClick={() => dispatch({type: 'sort', payload: 'svoris'})}>Svoris</button>
-                  <button onClick={() => dispatch({type: 'sort', payload: 'rusis'})}>Rusis</button>
-                  <button onClick={() => dispatch({type: 'sort', payload: 'vardas'})}>Pavadinimas</button>
-                  <button onClick={() => dispatch({type: 'order', payload: 'asc'})}>ASC</button>
-                  <button onClick={() => dispatch({type: 'order', payload: 'desc'})}>DESC</button>
-
-                  <label>
-                        Aplinka:{' '}
-                        <select
-                              value={filters.aplinka}
-                              onChange={(e) => dispatch({type: 'aplinka', payload: e.target.value})}
-                        >
-                              <option value="">Visi</option>
-                              <option value="oras">Oras</option>
-                              <option value="sausuma">Sausuma</option>
-                              <option value="vanduo">Vanduo</option>
-                              <option value="po zeme">Po zeme</option>
-                        </select>
-                  </label>
-            </div>
-      )
-}
-
-export default Filters
+export default Filters;
