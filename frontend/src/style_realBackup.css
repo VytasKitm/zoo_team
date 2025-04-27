@@ -1,0 +1,241 @@
+/* Page background */
+body {
+  background: linear-gradient(to right, #d7dbe0, #636e72);
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  color: #2c3e50;
+}
+
+/* Main container */
+.container {
+  max-width: 1000px;
+  margin: 3rem auto;
+  padding: 2rem;
+}
+
+/* Title */
+.title {
+  font-size: 3rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 3rem;
+  color: #ffffff;
+  text-shadow: 2px 2px #2d3436;
+}
+
+/* List styles */
+.animal-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Animal Card */
+.animal-item {
+  background: linear-gradient(135deg, #dfe6e9, #b2bec3);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, background 0.3s ease;
+  text-align: center;
+}
+
+.animal-item:hover {
+  background: linear-gradient(135deg, #b2bec3, #95a5a6);
+  transform: scale(1.03);
+}
+
+/* Animal name */
+.animal-name {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  color: #2c3e50;
+}
+
+/* Animal details */
+.animal-details {
+  font-size: 1.2rem;
+  color: #4b5563;
+  margin-bottom: 2rem;
+}
+
+/* Button group */
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+/* Buttons */
+.edit-button,
+.delete-button {
+  padding: 0.7rem 1.6rem;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.edit-button {
+  background: linear-gradient(to right, #005bea, #00c6fb);
+  color: white;
+}
+
+.edit-button:hover {
+  background: linear-gradient(to right, #0041c4, #00a9e0);
+}
+
+.delete-button {
+  background: linear-gradient(to right, #e74c3c, #c0392b);
+  color: white;
+}
+
+.delete-button:hover {
+  background: linear-gradient(to right, #c0392b, #e74c3c);
+}
+
+/* Modal overlay */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Modal content */
+.modal {
+  background: linear-gradient(145deg, #dfe6e9, #b2bec3);
+  padding: 2rem;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Modal input fields */
+.input {
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 10px;
+  border: 1px solid #7f8c8d;
+  font-size: 1rem;
+}
+
+/* Modal buttons */
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.modal-buttons button {
+  padding: 0.7rem 1.5rem;
+  border-radius: 10px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+
+.modal-buttons button:first-child {
+  background: #636e72;
+  color: white;
+}
+
+.modal-buttons button:first-child:hover {
+  background: #4b5563;
+}
+
+.modal-buttons button:last-child {
+  background: #27ae60;
+  color: white;
+}
+
+.modal-buttons button:last-child:hover {
+  background: #1e8449;
+}
+
+/* ////////////////////////////////////////////////////// */
+/* Filters container */
+.filters {
+  background: rgba(200, 200, 200, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 2rem;
+  margin-bottom: 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+/* Input and select styles */
+.filters input[type="search"],
+.filters select {
+  padding: 0.8rem 1.2rem;
+  border-radius: 12px;
+  border: none;
+  font-size: 1rem;
+  outline: none;
+  background: rgba(150, 150, 150, 0.8);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Checkbox */
+.filters input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #005bea;
+  cursor: pointer;
+}
+
+/* Labels */
+.filters label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2c3e50;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Filter buttons */
+.filters button {
+  background: linear-gradient(135deg, #d66d75, #e29587);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #2c3e50;
+}
+
+.filters button:hover {
+  background: linear-gradient(135deg, #a94442, #c94b4b);
+  transform: translateY(-2px);
+}
+
+.filters button.active {
+  background: linear-gradient(135deg, #156639, #13632b);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #bdccda;
+} 
