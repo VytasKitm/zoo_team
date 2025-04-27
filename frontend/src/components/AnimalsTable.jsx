@@ -52,6 +52,10 @@ const AnimalTable = () => {
     }
   };
 
+  const capitalize = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase()
+  }
+
   return (
     <div className="container">
       <h2 className="title">Gyvūnų sąrašas</h2>
@@ -65,11 +69,12 @@ const AnimalTable = () => {
             <li key={g.id} className="animal-item">
               <div className="animal-info">
                 <p className="animal-name">
-                  {g.vardas} ({g.rusis})
+                  {capitalize(g.vardas)}
                 </p>
                 <p className="animal-details">
-                  Svoris: {g.svoris}kg | Aplinka: {g.aplinka} | Ar gyvena
-                  Lietuvoje: {g.lt ? "Taip" : "Ne"}
+                  Rusis: <span>{capitalize(g.rusis)}</span> |
+                  Svoris: <span>{g.svoris}</span>kg | Aplinka: <span>{capitalize(g.aplinka)}</span> | Ar gyvena
+                  Lietuvoje: <span>{g.lt ? "Taip" : "Ne"}</span>
                 </p>
               </div>
               <div className="button-group">
@@ -154,10 +159,10 @@ const AnimalTable = () => {
                     })
                   }
                 >
-                  <option value="Oras">Oras</option>
-                  <option value="Sausuma">Sausuma</option>
-                  <option value="Vanduo">Vanduo</option>
-                  <option value="Po žeme">Po žeme</option>
+                  <option value="sausuma">Sausuma</option>
+                  <option value="oras">Oras</option>
+                  <option value="vanduo">Vanduo</option>
+                  <option value="po žeme">Po žeme</option>
                 </select>
               </div>
               <div>
@@ -174,7 +179,7 @@ const AnimalTable = () => {
                 />
               </div>
               <div className="button-group">
-                <button type="submit">Išsaugoti</button>
+                <button className="edit-button" type="submit">Išsaugoti</button>
                 <button type="button" onClick={() => setSelectedAnimal(null)}>
                   Atšaukti
                 </button>

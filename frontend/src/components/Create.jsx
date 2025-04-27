@@ -20,7 +20,8 @@ const Create = () => {
                 console.log(gyvunaiData)
         }
 
-        const writeGyvunasToDB = () => {
+        const writeGyvunasToDB = (e) => {
+                e.preventDefault()
                 const vardas = gyvunaiData.vardas?.toString().trim()
                 const rusis = gyvunaiData.rusis?.toString().trim()
                 const svorisStr = gyvunaiData.svoris?.toString().trim()
@@ -65,32 +66,45 @@ const Create = () => {
         }
 
   return (
-    <div>
-        <label> Pavadinimas
-                <input type="text" value={gyvunaiData.vardas} onChange={(e) => setData('vardas', e.target.value)}/>
-        </label>
-        <label> Rusis
-                <input type="text" value={gyvunaiData.rusis} onChange={(e) => setData('rusis', e.target.value)}/>
-        </label>
-        <label> Svoris
-                <input type="text" value={gyvunaiData.svoris} onChange={(e) => setData('svoris', e.target.value )} />
-        </label>
-        <label> Ar gyvena Lietuvoje
-                <input type="checkbox" checked={gyvunaiData.lt} onChange={(e) => setData('lt', e.target.checked)} />
-        </label>
-        <label> Aplinka{' '}
-                <select value={gyvunaiData.aplinka} onChange={(e) => setData('aplinka', e.target.value)}>
-                        <option value="sausuma">Sausuma</option>
-                        <option value="oras">Oras</option>
-                        <option value="vanduo">Vanduo</option>
-                        <option value="po zeme">Po zeme</option>
-                </select>
-        </label>
-        <label > Sukurti gyvuna
-                <button onClick={writeGyvunasToDB}>Sukurti gyvuna</button>
-        </label>
-        <h3>{infoText}</h3>
-        
+    <div className="filters create-form">
+        <form onSubmit={writeGyvunasToDB}>
+                <div className='form-grid'>
+                        
+                                <div className='form-row row-vardas'>
+                                        <label> Vardas: </label>
+                                        <input type="text" value={gyvunaiData.vardas} onChange={(e) => setData('vardas', e.target.value)}/>
+                                </div>
+                                <div className='form-row row-rusis'>
+                                        <label> Rusis: </label>
+                                        <input type="text" value={gyvunaiData.rusis} onChange={(e) => setData('rusis', e.target.value)}/>
+                                </div>
+                                <div className='form-row row-svoris'>
+                                        <label> Svoris: </label>
+                                        <input type="text" value={gyvunaiData.svoris} onChange={(e) => setData('svoris', e.target.value )} />
+                                </div>
+                        
+                      
+                                <div className='form-row row-aplinka'>
+                                        <label> Aplinka: </label>
+                                        <select value={gyvunaiData.aplinka} onChange={(e) => setData('aplinka', e.target.value)}>
+                                                <option value="sausuma">Sausuma</option>
+                                                <option value="oras">Oras</option>
+                                                <option value="vanduo">Vanduo</option>
+                                                <option value="po zeme">Po zeme</option>
+                                        </select>
+                                </div>
+                                <div className='form-row row-checkbox'>
+                                        <label> Ar gyvena Lietuvoje: </label>
+                                        <input type="checkbox" checked={gyvunaiData.lt} onChange={(e) => setData('lt', e.target.checked)} />
+                                </div>
+                                <div className='form-row row-submit'>
+                                        <button type="submit">Sukurti gyvuna</button>
+                                </div>
+                             
+                </div>
+                
+                <h3 className='infoText'>{infoText}</h3>
+        </form>
     </div>
   )
 }

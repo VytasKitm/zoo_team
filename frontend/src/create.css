@@ -1,0 +1,149 @@
+/* ------------------------------------------------------------------
+   Create form: exact 3 rows × 2 columns, perfect pairing
+-------------------------------------------------------------------*/
+
+/* 1) Grid setup: 2 cols, 3 equal rows, center‐aligned */
+.filters.create-form form > .create-form {
+      display: grid;
+      grid-template-columns: auto auto;            /* left / right */
+      grid-template-rows: 2.5rem 2.5rem 2.5rem;     /* three rows, each 2.5rem high */
+      column-gap: 2rem;                            /* horizontal gutter */
+      row-gap: 1rem;                               /* vertical gutter */
+      align-items: center;                         /* vertical centering in each cell */
+    }
+    
+    /* 2) Place each left‐side div into col 1, its corresponding row */
+    .filters.create-form 
+      form > .create-form > div:nth-child(1) {
+      grid-column: 1; grid-row: 1;
+    }
+    .filters.create-form 
+      form > .create-form > div:nth-child(2) {
+      grid-column: 1; grid-row: 2;
+    }
+    .filters.create-form 
+      form > .create-form > div:nth-child(3) {
+      grid-column: 1; grid-row: 3;
+    }
+    
+    /* 3) Place each right‐side div into col 2, matching row */
+    .filters.create-form 
+      form > .create-form > div:nth-child(4) {
+      grid-column: 2; grid-row: 1;
+    }
+    .filters.create-form 
+      form > .create-form > div:nth-child(5) {
+      grid-column: 2; grid-row: 2;
+    }
+    .filters.create-form 
+      form > .create-form > div:nth-child(6) {
+      grid-column: 2; grid-row: 3;
+    }
+    
+    /* 4) Label styling: fixed width, right-aligned, centered vertically */
+    .filters.create-form 
+      form > .create-form label {
+      width: 80px;            /* all labels same width */
+      text-align: right;      /* line up text on the right edge */
+      margin: 0;
+      font-weight: 600;
+    }
+    
+    /* 5) Uniform control sizing */
+    /* — text/number inputs */
+    .filters.create-form 
+      form > .create-form 
+      input[type="text"],
+    .filters.create-form 
+      form > .create-form 
+      input[type="number"] {
+      width: 200px;
+      height: 100%;           /* fill that 2.5rem row */
+      padding: 0 1rem;
+      box-sizing: border-box;
+    }
+    
+    /* — select */
+    .filters.create-form 
+      form > .create-form 
+      select {
+      width: 200px;
+      height: 100%;
+      padding: 0 1rem;
+      box-sizing: border-box;
+    }
+    
+    /* — checkbox */
+    .filters.create-form 
+      form > .create-form 
+      input[type="checkbox"] {
+      width: 1.25rem;
+      height: 1.25rem;
+      /* align-items:center on the grid already vertically centers it */
+    }
+    
+    /* — submit button in the third row, right column */
+    .filters.create-form 
+      form > .create-form 
+      div:nth-child(3) {
+      display: flex;
+      justify-content: flex-end;  /* push the button to the far right */
+    }
+    .filters.create-form 
+      form > .create-form 
+      button {
+      height: 100%;
+      padding: 0 1.5rem;
+    }
+    
+    
+    /* === Create form overrides – place at very end of CSS === */
+    
+    /* 1) Row layout: label + control on one line */
+    .filters.create-form .form-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;       /* space between label & field */
+      margin-bottom: 1rem;
+    }
+    
+    /* 2) Labels: fixed width, right-aligned, vertically centered */
+    .filters.create-form .form-row > label {
+      width: 80px;        /* tweak to match your longest label */
+      text-align: right;
+      margin: 0;
+      font-weight: 600;
+    }
+    
+    /* 3) Inputs & select: copy .filters padding/shadow, same fixed width */
+    .filters.create-form .form-row > input[type="text"],
+    .filters.create-form .form-row > input[type="number"],
+    .filters.create-form .form-row > select {
+      padding: 0.8rem 1.2rem;
+      border-radius: 12px;
+      border: none;
+      font-size: 1rem;
+      background: rgba(150, 150, 150, 0.8);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 200px;       /* same as your filters fields */
+      box-sizing: border-box;
+    }
+    
+    /* 4) Submit button: identical to .filters button */
+    .filters.create-form .submit-row button {
+      padding: 0.8rem 1.5rem;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 1rem;
+      background: linear-gradient(135deg, #d66d75, #e29587);
+      color: #2c3e50;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    /* 5) Shrink-wrap the create-grid to those exact widths */
+    .filters.create-form > form > .create-form {
+      width: fit-content;
+      margin: 0 auto;
+    }

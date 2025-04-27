@@ -11,6 +11,8 @@ body {
   max-width: 1000px;
   margin: 3rem auto;
   padding: 2rem;
+  padding-top: 0rem ;
+  margin-top: 0 rem
 }
 
 /* Title */
@@ -19,6 +21,7 @@ body {
   font-weight: 800;
   text-align: center;
   margin-bottom: 3rem;
+  margin-top: 0rem;
   color: #ffffff;
   text-shadow: 2px 2px #2d3436;
 }
@@ -30,17 +33,20 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 /* Animal Card */
 .animal-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background: linear-gradient(135deg, #dfe6e9, #b2bec3);
-  border-radius: 20px;
-  padding: 2rem;
+  border-radius: 10px;
+  padding: 1rem;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, background 0.3s ease;
-  text-align: center;
+  /* text-align: center; */
 }
 
 .animal-item:hover {
@@ -48,11 +54,19 @@ body {
   transform: scale(1.03);
 }
 
+.animal-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
 /* Animal name */
 .animal-name {
   font-size: 2rem;
   font-weight: 700;
-  margin-bottom: 0.8rem;
+  margin-bottom: 0;
+  margin-top: 0;
   color: #2c3e50;
 }
 
@@ -60,14 +74,19 @@ body {
 .animal-details {
   font-size: 1.2rem;
   color: #4b5563;
-  margin-bottom: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.animal-details span {
+  font-size: 1.3rem;
+  font-weight: 600;
 }
 
 /* Button group */
 .button-group {
   display: flex;
   justify-content: center;
-  gap: 1.5rem;
+  gap: 0.5rem;
 }
 
 /* Buttons */
@@ -132,7 +151,7 @@ body {
 }
 
 /* Modal buttons */
-.modal-buttons {
+.modal-button {
   display: flex;
   justify-content: flex-end;
   gap: 1rem;
@@ -142,6 +161,7 @@ body {
   padding: 0.7rem 1.5rem;
   border-radius: 10px;
   font-weight: 600;
+  margin-right: 0.5rem;
   border: none;
   cursor: pointer;
 }
@@ -238,4 +258,286 @@ body {
   cursor: pointer;
   transition: all 0.3s ease;
   color: #bdccda;
+} 
+
+/* ------------------------------------------------------------------- */
+
+
+/* ================================================================= */
+/* Make text/number inputs, labels, checkbox in any .filters match */
+.filters.create-form {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.filters.create-form h3 {
+  width: 100%;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+}
+
+.filters.create-form label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+}
+
+
+.filters.create-form input[type="text"],
+.filters.create-form input[type="number"],
+.filters.create-form select {
+  width: 100%;
+  padding: 0.8rem 1.2rem;
+  border-radius: 12px;
+  border: none;
+  font-size: 1rem;
+  outline: none;
+  background: rgba(150, 150, 150, 0.8);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+}
+
+.filters.create-form input[type="checkbox"] {
+  margin-left: 0;
+  margin-right: 0.5rem;
+}
+
+.filters.create-form .button-group {
+  justify-content: flex-end;
+}
+
+.filters.create-form button {
+  background: linear-gradient(135deg, #d66d75, #e29587);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #2c3e50;
+}
+
+.filters.create-form button:hover {
+  background: linear-gradient(135deg, #a94442, #c94b4b);
+  transform: translateY(-2px);
+}
+
+
+.inputs{
+  display: flex;
+  flex-direction: column;
+}
+
+.inputs > div {
+  display: flex;
+  justify-content: end;
+  margin: auto
+}
+
+.inputs > div > label {
+  margin-right: 1rem
+}
+
+
+.filters.create-form select {
+  /* auto width for text, with sensible max */
+  width: auto;
+  max-width: 200px;
+  padding: 0.8rem 1.2rem;
+  margin-bottom: 0;
+}
+
+.filters.create-form label {
+  /* inline, not block */
+  display: inline-block;
+  margin-right: 1rem;
+  width: auto;
+}
+
+
+
+.options {
+display: flex;
+flex-direction: column;
+justify-content: space-around;
+}
+
+.create-form {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+
+
+
+/* -----------------------------------------------------------------
+   3×2 grid for Create form, matching Filters sizing exactly
+------------------------------------------------------------------*/
+.filters.create-form .form-grid {
+  display: grid;
+  grid-template-areas:
+    "vardas aplinka"
+    "rusis checkbox"
+    "svoris submit";
+  grid-template-columns: auto auto;       /* two columns */
+  grid-template-rows: 2.5rem 2.5rem 2.5rem; /* three equal rows */
+  column-gap: 2rem;                       /* spacing between left/right */
+  row-gap: 1rem;                          /* spacing between rows */
+  align-items: center;                    /* vertical-center contents */
+}
+
+/* map each semantic row to its grid area */
+.filters.create-form .row-vardas   { grid-area: vardas; }
+.filters.create-form .row-aplinka  { grid-area: aplinka; }
+.filters.create-form .row-rusis    { grid-area: rusis; }
+.filters.create-form .row-checkbox { grid-area: checkbox; }
+.filters.create-form .row-svoris   { grid-area: svoris; }
+.filters.create-form .row-submit   { grid-area: submit; }
+
+/* label + control sit side-by-side and inherit Filters styling */
+.filters.create-form .form-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.filters.create-form .form-row > label {
+  width: 80px;         /* same width for all labels */
+  text-align: right;
+  font-weight: 600;
+}
+
+/* exactly the same look as your Filters inputs */
+.filters.create-form input[type="text"],
+.filters.create-form input[type="number"],
+.filters.create-form select {
+  padding: 0.8rem 1.2rem;
+  border-radius: 12px;
+  border: none;
+  font-size: 1rem;
+  background: rgba(150, 150, 150, 0.8);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  height: 2.5rem;      /* fill the 2.5rem row */
+  box-sizing: border-box;
+}
+
+/* checkbox vertically centered by the grid’s align-items */
+.filters.create-form input[type="checkbox"] {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* same look & feel as your Filters button */
+.filters.create-form .row-submit button {
+  padding: 0.8rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  background: linear-gradient(135deg, #d66d75, #e29587);
+  color: #2c3e50;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  height: 2.5rem;
+}
+
+
+form {
+  width: 100%;
+  height: 100%;
+}
+
+
+.filters.create-form .form-grid {
+  grid-template-rows: 2.5rem 2.5rem 2.5rem;  
+}
+
+
+.filters.create-form .row-checkbox > label {
+  white-space: nowrap;
+  margin-right: 6rem;
+}
+
+.filters.create-form .row-checkbox {
+  display: flex;
+  justify-content: start;
+}
+
+.filters.create-form .row-submit {
+  display: flex;
+  justify-content: center;
+}
+
+
+.filters.create-form input[type="text"],
+.filters.create-form input[type="number"],
+.filters.create-form select {
+  height: auto;
+  line-height: normal;
+  padding: 0.8rem 1.2rem;
+  border-radius: 12px;
+  background: rgba(150,150,150,0.8);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+
+.filters.create-form .row-submit button {
+  height: auto;
+  line-height: normal;
+  padding: 0.8rem 1.5rem;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #d66d75, #e29587);
+  color: #2c3e50;
+}
+
+
+.modal input[type="text"],
+.modal input[type="number"],
+.modal input[type="search"],
+.modal select {
+  padding: 0.8rem 1.2rem;
+  border-radius: 12px;
+  border: none;
+  font-size: 1rem;
+  outline: none;
+  margin-bottom: 0.5rem;
+  margin-right: 0.5rem;
+  background: rgba(150, 150, 150, 0.8);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal button {
+  padding: 0.8rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #2c3e50;
+  background: linear-gradient(135deg, #d66d75, #e29587);
+  border: none;
+}
+
+.modal button:hover {
+  background: linear-gradient(135deg, #a94442, #c94b4b);
+  transform: translateY(-2px);
+}
+
+.modal input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #005bea;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.infoText {
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+.form-grid {
+  margin-top: 1rem
 }

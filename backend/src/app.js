@@ -21,7 +21,7 @@ app.use(express.json())
 //Routes:
 app.use('/animals', animalRouter)
 
-app.use((error, req, res, next) => {
+app.use((error, res) => {
       console.error(error)
       res
             .status(error.status || 500)
